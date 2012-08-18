@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container-fluid
+    div.page-header
+      h1= title
+    div.row-fluid
+      div.span3
+        small Welcome #{name}
+        input(name='keywords', type='text')
+        input(name='search', type='submit', value='Search')
+        p &copy; Unison 2012
+      div.span4
+        h3 Search results
+        
