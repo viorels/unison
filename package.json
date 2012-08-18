@@ -1,9 +1,13 @@
 {
   "name": "unison",
-  "description": "unison",
+  "description": "prototype that connects people with similar unique interests",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node app"
+  },
   "dependencies": {
-    "express": "3.0.0rc3"
+    "express": "3.0.0rc3",
+    "jade": "*"
   }
 }
