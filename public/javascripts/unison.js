@@ -1,6 +1,9 @@
 
 var searchForm = $('form#search_form')
 var searchResultsDiv = $('div.search_results')
+var otherSearches = $('ul.other_searches')
+
+var socket = io.connect('http://localhost');
 
 $(function() {
     initSearch();
@@ -11,14 +14,15 @@ function initSearch() {
 }
 
 function searchSubmit() {
-    keywords = $('form#search_form').find('input[name="keywords"]').val()
+    var keywords = $('form#search_form').find('input[name="keywords"]').val()
     search(keywords);
+    socket.emit('search', { keywords: keywords });
     return false;
 }
 
 function search(keywords) {
-    // search_engine = 'http://www.google.com/search?q=' // no content returned
-    search_engine = 'https://duckduckgo.com/?q='
+    // var search_engine = 'http://www.google.com/search?q=' // no content returned
+    var search_engine = 'https://duckduckgo.com/?q='
     searchResultsDiv.empty();
     $('<iframe />', {
         name: 'search_results',
@@ -26,8 +30,7 @@ function search(keywords) {
     }).appendTo(searchResultsDiv);
 }
 
-var socket = io.connect('http://localhost');
-socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
+socket.on('other_search', function (data) {
+    var keywords = data.keywords
+    otherSearches.append('<li>' + keywords + '</li>')
 });
