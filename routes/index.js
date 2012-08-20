@@ -23,6 +23,8 @@ exports.connection = function (socket) {
 
   function search(data) {
     console.log(data);
+    searches.push(data.keywords)
+    socket.emit('other_search', { keywords: data.keywords });
     socket.broadcast.emit('other_search', { keywords: data.keywords });
   }
 }

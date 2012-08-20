@@ -10,7 +10,9 @@ block content
         form(id='search_form', action='GET')
           input(name='keywords', type='text', placeholder="What's on your mind ?")
           input.btn.btn-primary(name='search', type='submit', value='Search')
-        ul.other_searches
+        div.other_searches
+          small Interesting searches:
+          ul
         p &copy; Unison 2012
       div.search_results.span9
         h3 Search results

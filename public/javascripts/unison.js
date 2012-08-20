@@ -1,7 +1,7 @@
 
 var searchForm = $('form#search_form')
 var searchResultsDiv = $('div.search_results')
-var otherSearches = $('ul.other_searches')
+var otherSearches = $('div.other_searches ul')
 
 var socket = io.connect('http://localhost');
 
@@ -30,7 +30,17 @@ function search(keywords) {
     }).appendTo(searchResultsDiv);
 }
 
-socket.on('other_search', function (data) {
-    var keywords = data.keywords
+function searchByOther(keywords) {
     otherSearches.append('<li>' + keywords + '</li>')
+}
+
+socket.on('other_search', function (data) {
+    var keywords = data.keywords;
+    searchByOther(keywords);
+});
+
+socket.on('other_searches', function (keywords_list) {
+    keywords_list.forEach(function (keywords) {
+        searchByOther(keywords);
+    })
 });
