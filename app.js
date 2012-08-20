@@ -37,9 +37,4 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-io.sockets.on('connection', function (socket) {
-  socket.on('search', function (data) {
-    console.log(data);
-    socket.emit('other_search', { keywords: 'bla bla' });
-  });
-});
+io.sockets.on('connection', routes.connection);
