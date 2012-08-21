@@ -7,13 +7,18 @@ block content
     div.row-fluid
       div.span3
         small Welcome #{name}
-        form(id='search_form', action='GET')
-          input(name='keywords', type='text', placeholder="What's on your mind ?")
+        form.input-append(id='search_form')
+          input.span9(name='keywords', type='text', placeholder="What's on your mind ?")
           input.btn.btn-primary(name='search', type='submit', value='Search')
+        div.chat.well.well-small
+          div.messages
+            p Chat with another anonymous user ...
+          form.input-append
+            input.span9(name='message', type='text')
+            input.btn(name='send', type='submit', value='Send')
         div.other_searches
           small Interesting searches:
           ul
         p &copy; Unison 2012
       div.search_results.span9
         h3 Search results
-        

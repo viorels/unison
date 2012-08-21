@@ -11,3 +11,12 @@ div.search_results iframe {
     width: 100%;
     min-height: 800px;
 }
+
+div.chat {
+    display: none;
+}
+
+div.chat div.messages {
+    height: 250px;
+    overflow: scroll-y;
+}
