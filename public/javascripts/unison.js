@@ -29,11 +29,11 @@ function searchSubmit() {
 }
 
 function search(keywords) {
-    var search_engine = 'https://duckduckgo.com/?q='
+    var searchEngine = 'https://duckduckgo.com/?q='
     searchResultsDiv.empty();
     $('<iframe />', {
         name: 'search_results',
-        src: search_engine + encodeURIComponent(keywords)
+        src: searchEngine + encodeURIComponent(keywords)
     }).appendTo(searchResultsDiv);
 }
 
@@ -42,10 +42,10 @@ function searchByOther(keywords) {
 }
 
 function chatSubmit() {
-    var message_input = chatForm.find('input[name="message"]')
-    message = message_input.val();
+    var messageInput = chatForm.find('input[name="message"]')
+    var message = messageInput.val();
     if (message) {
-        message_input.val('');
+        messageInput.val('');
         chatSend(message);
     };
     return false;
