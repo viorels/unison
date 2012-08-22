@@ -10,6 +10,7 @@ unison = function () {
 
     $(function() {
         initSearch();
+        initState();
     });
 
     function initSearch() {
@@ -21,10 +22,22 @@ unison = function () {
         chatForm.submit(chatSubmit);
     }
 
+    function initState() {
+        $(window).bind('hashchange', stateChange)
+        $(window).trigger('hashchange');
+    }
+
+    function stateChange() {
+        var keywords = $.bbq.getState('keywords');
+        var view = $.bbq.getState('view', true);
+        searchForm.find('input[name="keywords"]').val(keywords);
+        search(keywords);
+        socket.emit('search', { keywords: keywords, view: view });
+    }
+
     function searchSubmit() {
         var keywords = searchForm.find('input[name="keywords"]').val()
-        search(keywords);
-        socket.emit('search', { keywords: keywords });
+        $.bbq.pushState({ keywords: keywords, view: false }, 2);
         return false;
     }
 
